@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <h1 class="welcome">Welcome</h1>
+        <form method="post" action="/login">
+            <div class="profile">
+                <div class="profile-header">
+                    <img src="react-logo.png" alt="Profile Picture" class="profile-picture">
+                    <h1 class="profile-name">mufeed</h1>
+                    <p class="profile-bio">Just a dreamy world.</p>
+                </div>
+                <div class="profile-posts">
+                    <h2>Recent Posts</h2>
+                    <ul>
+                        <li>Had a great day coding</li>
+                        <li>Just started</li>
+                        <li>pretty cool</li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="profile">
+                <div class="profile-header">
+                    <img src="https://example.com/profile.jpg" alt="Profile Picture" class="profile-picture">
+                    <h1 class="profile-name">prasanna</h1>
+                    <p class="profile-bio">exploring.</p>
+                </div>
+                <div class="profile-posts">
+                    <h2>Recent Posts</h2>
+                    <ul>
+                        <li>nice profile</li>
+                        <li>hanginh out</li>
+                        <li>live peace</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- <h1>Logged in</h1> -->
+            <!-- <a href="/password">Change Password</a> -->
+        </form>
+    </div>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .welcome {
+            margin-bottom: 20px;
+        }
+
+        form {
+            /* display: flex; */
+            flex-direction: column;
+            background-color: antiquewhite;
+            width: 'auto';
+            height: 'auto';
+        }
+
+        input {
+            margin-bottom: 10%;
+            width: 100%;
+
+        }
+
+        button {
+            width: 20%;
+        }
+
+
+        .profile {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-header {
+            margin-bottom: 20px;
+        }
+
+        .profile-picture {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .profile-name {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        .profile-bio {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .profile-posts {
+            text-align: left;
+        }
+
+        .profile-posts h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .profile-posts ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .profile-posts li {
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</body>
+
+</html>
