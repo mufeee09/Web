@@ -29,12 +29,14 @@ app.post("/login", (req, res) => {
         } else {
             data = result[0];
             console.log(data)
+
             console.log(password)
             if (result[0].password == password) {
                 res.render('change')
             } else {
                 res.redirect('/')
             }
+
         }
     })
 })
@@ -63,30 +65,57 @@ app.post("/update", (req, res) => {
     let { email, oldpass, newpass } = req.body;
     let q = "select password from details where email = ?";
     let updq = "update details set password = ? where email = ?";
-    let gpass = "select password from password_history where email = ? limit 6";
+    let gpass = "SELECT Password FROM password_history ORDER BY created_at DESC LIMIT 3";
     let inspq = "insert into password_history (email, password) values (?, ?)";
     let dltold = "delete from password_history where email = ? ORDER BY id ASC limit 1";
 
     connection.query(q, [email], (error, results) => {
         if (error || results.length === 0 || results[0].password !== oldpass) 
             return;
+        
         connection.query(gpass, [email], (error, hist) => {
-            if (error) 
-                return;
-            if (hist.some(row => row.password === newpass)) 
-                return res.status(400).send("New password should not be the last six password.");         
+            if (error){
+                return error;
+            }else{
+                console.log(hist)
+            }
+
+              
+          const check =  () =>{
+            let result =false;
+            hist.map(e=>{
+                console.log(e.Password)
+                if( e.Password === newpass){
+                    result=true;
+                }
+               
+            })
+            return result
+          }   
+
+          console.log(check())
+
+            if (check()) {
+                return res.status(400).send("New password should not be the last six password.");
+            }
+              else{
+            
             connection.query(updq, [newpass, email], (error) => {
                 if (error) 
-                    return;          
+                    return;
+                
                 connection.query(inspq, [email, newpass], (error) => {
                     if (error) 
-                        return;       
-                    if (hist.length >= 6) 
-                        connection.query(dltold, [email]);        
+                        return;
+                    
+                    if (hist.length >= 3) 
+                        connection.query(dltold, [email]);
+                    
                     res.send("Password changed successfully!");
+                    // console.log()
                 });
             });
-        });
+        }});
     });
 });
 
